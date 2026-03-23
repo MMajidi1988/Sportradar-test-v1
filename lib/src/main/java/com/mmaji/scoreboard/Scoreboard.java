@@ -24,5 +24,17 @@ public class Scoreboard {
         }
     }
     throw new IllegalArgumentException("Match not found: " + homeTeam + " vs " + awayTeam);
-}
+    }
+
+    public void finishMatch(String homeTeam, String awayTeam) {
+    for (int i = 0; i < matches.size(); i++) {
+        MatchSummary current = matches.get(i);
+        if (current.homeTeam().equals(homeTeam) && current.awayTeam().equals(awayTeam)) {
+            matches.remove(i);
+            return;
+        }
+    }
+    throw new IllegalArgumentException("Match not found: " + homeTeam + " vs " + awayTeam);
+    }
+    
 }
