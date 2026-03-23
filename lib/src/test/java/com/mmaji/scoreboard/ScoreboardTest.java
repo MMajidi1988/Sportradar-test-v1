@@ -23,7 +23,7 @@ class ScoreboardTest {
     @Test
     void updateScore_changesExistingMatchScore() {
     Scoreboard scoreboard = new Scoreboard();
-    
+
     scoreboard.startMatch("Mexico", "Canada");
 
     scoreboard.updateScore("Mexico", "Canada", 1, 3);
@@ -31,6 +31,18 @@ class ScoreboardTest {
     MatchSummary match = scoreboard.getSummary().getFirst();
     assertEquals(1, match.homeScore());
     assertEquals(3, match.awayScore());
-}
+    }
+
+    @Test
+    void finishMatch_removesMatchFromSummary() {
+    Scoreboard scoreboard = new Scoreboard();
+    
+    scoreboard.startMatch("Mexico", "Canada");
+
+    scoreboard.finishMatch("Mexico", "Canada");
+
+    assertEquals(0, scoreboard.getSummary().size());
+    }
+
     
 }
